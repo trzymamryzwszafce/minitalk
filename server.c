@@ -6,12 +6,11 @@
 /*   By: szmadeja <szmadeja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 17:08:22 by szmadeja          #+#    #+#             */
-/*   Updated: 2025/02/10 19:10:18 by szmadeja         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:55:17 by szmadeja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 
 int	main(void)
