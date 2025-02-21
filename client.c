@@ -6,7 +6,7 @@
 /*   By: szmadeja <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 17:30:22 by szmadeja          #+#    #+#             */
-/*   Updated: 2025/02/18 18:11:12 by szmadeja         ###   ########.fr       */
+/*   Updated: 2025/02/21 18:04:13 by szmadeja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	send_message(int pid, char *mes)
 {
 	int	i;
 	int	j;
+
+
 }
 
 int	main(int argc, char *argv[])
@@ -53,7 +55,7 @@ int	main(int argc, char *argv[])
 	pid = ft_atoi(argv[1]);
 	if (!pid)
 		return (0);
-	mes = argv[2];
+	*mes = argv[2];
 	if (!mes)
 		return (0);
 	send_message(pid, mes);
