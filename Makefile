@@ -8,7 +8,7 @@ RM = rm -f
 SRC = server.c ft_printf.c utils.c
 SRC2 = client.c ft_printf.c utils.c
 EXEC = server
-EXEC2 = cwel
+EXEC2 = client
 
 # Object files for both executables
 OBJ = $(SRC:.c=.o)
