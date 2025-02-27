@@ -6,7 +6,7 @@
 /*   By: szmadeja <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 17:30:22 by szmadeja          #+#    #+#             */
-/*   Updated: 2025/02/21 18:04:13 by szmadeja         ###   ########.fr       */
+/*   Updated: 2025/02/27 18:58:50 by szmadeja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,34 @@ int	ft_atoi(const char *str)
 	return (val * res);
 }
 
+void	send_bit(int pid, int bit)
+{
+	if (bit == 0)
+		kill(pid, SIGUSR1);
+	else
+		kill(pid, SIGUSR2);
+}
+
 void	send_message(int pid, char *mes)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		position;
+	int		bit;
+	char	byte;
 
-
+	i = 0;
+	while (mes[i])
+	{
+		byte = mes[i];
+		position = 7;
+		while (position >= 0)
+		{
+			bit = (byte >> position) & 1;
+			send_bit(pid, bit);
+			position--;
+		}
+		i++;
+	}
 }
 
 int	main(int argc, char *argv[])
