@@ -15,6 +15,9 @@
 
 # include <unistd.h>
 # include <stdarg.h>
+# include <sys/types.h>
+# include <signal.h>
+# include <stdlib.h>
 
 int	ft_printf(const char *format, ...);
 int	ft_format(char letter, va_list ap);
