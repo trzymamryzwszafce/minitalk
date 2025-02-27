@@ -6,7 +6,7 @@
 /*   By: szmadeja <szmadeja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 17:08:22 by szmadeja          #+#    #+#             */
-/*   Updated: 2025/02/27 19:11:49 by szmadeja         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:38:54 by szmadeja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@ void	handle_signal(int sig)
 		bits |= (0 << position);
 	position++;
 	if (position == 8)
-		
+	{
+		ft_printf("%c", (char)bits);
+		if (bits == '\0')
+			ft_printf("%c", (char)bits);
+		bits = 0;
+		position = 0;
+	}
 }
 
 int	main(void)
