@@ -37,12 +37,18 @@ int	ft_atoi(const char *str)
 	return (val * res);
 }
 
+void	ack_handler(int sig)
+{
+	(void)sig;
+}
+
 void	send_bit(int pid, int bit)
 {
 	if (bit == 0)
 		kill(pid, SIGUSR1);
 	else
 		kill(pid, SIGUSR2);
+	pause();
 }
 
 void	send_message(int pid, char *mes)
@@ -65,6 +71,8 @@ void	send_message(int pid, char *mes)
 		}
 		i++;
 	}
+	kill(pid, SIGUSR1);
+	pause();
 }
 
 int	main(int argc, char *argv[])
@@ -80,6 +88,8 @@ int	main(int argc, char *argv[])
 	mes = argv[2];
 	if (!mes)
 		return (0);
+	signal(SIGUSR1, ack_handler);
 	send_message(pid, mes);
+	ft_printf("Message sent succesfully\n");
 	return (0);
 }
