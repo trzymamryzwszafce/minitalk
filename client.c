@@ -39,7 +39,8 @@ int	ft_atoi(const char *str)
 
 void	ack_handler(int sig)
 {
-	(void)sig;
+	if (sig == SIGUSR1)
+		ft_printf("Message sent succesfully\n");
 }
 
 void	send_bit(int pid, int bit)
@@ -48,31 +49,34 @@ void	send_bit(int pid, int bit)
 		kill(pid, SIGUSR1);
 	else
 		kill(pid, SIGUSR2);
-	pause();
+	usleep(75);
 }
 
 void	send_message(int pid, char *mes)
 {
 	int		i;
 	int		position;
-	int		bit;
 	char	byte;
 
 	i = 0;
 	while (mes[i])
 	{
 		byte = mes[i];
-		position = 7;
-		while (position >= 0)
+		position = 0;
+		while (position < 8)
 		{
-			bit = (byte >> position) & 1;
-			send_bit(pid, bit);
-			position--;
+			send_bit(pid, (byte >> position & 1));
+			position++;
 		}
 		i++;
 	}
-	kill(pid, SIGUSR1);
-	pause();
+	byte = '\0';
+	position = 0;
+	while (position < 8)
+	{
+		send_bit(pid, (byte >> position & 1));
+		position++;
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -90,6 +94,5 @@ int	main(int argc, char *argv[])
 		return (0);
 	signal(SIGUSR1, ack_handler);
 	send_message(pid, mes);
-	ft_printf("Message sent succesfully\n");
 	return (0);
 }
